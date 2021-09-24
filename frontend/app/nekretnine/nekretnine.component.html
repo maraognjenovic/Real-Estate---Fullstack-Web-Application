@@ -1,0 +1,155 @@
+<h2>Nekretnine</h2>
+<br/>
+<br/>
+
+<input type='text' name='pretraga' [(ngModel)]='pretraga' placeholder="Unesi grad">
+
+<input type='text' name='cenaOd' [(ngModel)]='cenaOd' placeholder="Cena od">
+
+<input type='text' name='cenaDo' [(ngModel)]='cenaDo' placeholder="Cena do">
+<!--<button class='dugme1'(click)='traziCenu()'>Trazi cenu</button>--> 
+<button class='dugme1'(click)='trazi()'>Trazi</button> 
+<br/>
+<br/>
+<br/>
+<form>
+<table>
+    <tr>
+        <th>opis</th>
+        <th>adresa</th>
+        <th>tip</th>
+        <th>sprat</th>
+        <th>kvadratura</th>
+        <th>sobe</th>
+        <th>namestenost</th>
+        <th>izdavanje</th>
+        <th>galerija</th>
+        <th>cena</th>
+        <th>vlasnik</th>
+        <th>id</th>
+    </tr>
+    <tr *ngFor='let n of sveNekretnine'>
+        <td>{{n.opis}}</td>
+        <td>{{n.adresa}}</td>
+        <td>{{n.tip}}</td>
+        <td>{{n.sprat}}</td>
+        <td>{{n.kvadratura}}</td>
+        <td>{{n.sobe}}</td>
+        <td>{{n.namestenost}}</td>
+        <td>{{n.izdavanje}}</td>
+        <td>
+            <img width='100px' height='100px' src='assets/{{n.id}}.jpg'>
+        </td>
+        <td>{{n.cena}}</td>
+        <td>{{n.vlasnik}}</td>
+        <td>{{n.id}}</td>
+        <td> 
+            <button class='dugme1'(click)=obrisi(n.id)>Obrisi</button>
+        </td>
+    
+    </tr>
+</table>
+</form>
+<button class='dugme1'(click)="sortiraj()">Sortiraj po ceni rastuce </button>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<h4>Dodaj novu nekretninu</h4>
+<table>
+    <tr>
+        <td>opis:</td>
+        <td>
+            <input type='text' name='opis' [(ngModel)]='opis'>
+        </td>
+    </tr>
+    <tr>
+        <td>adresa:</td>
+        <td>
+              
+            <input type='text'  name='adresa' [(ngModel)]='adresa'>
+            
+        
+        </td>
+    </tr>
+    <tr>
+        <td>tip:</td>
+        <td>
+            <input type='text' name='tip' [(ngModel)]='tip'>
+        </td>
+    </tr>
+    <tr>
+        <td>sprat:</td>
+        <td>
+            <input type='text' name='sprat' [(ngModel)]='sprat'>
+        </td>
+    </tr>
+    <tr>
+        <td>kvadratura:</td>
+        <td>
+            <input type='text' name='kvadratura' [(ngModel)]='kvadratura'>
+        </td>
+    </tr>
+    <tr>
+        <td>sobe:</td>
+        <td>
+            <input type='text' name='sobe' [(ngModel)]='sobe'>
+        </td>
+    </tr>
+    <tr>
+        <td>namestenost:</td>
+        <td>
+            <input type='text' name='namestenost' [(ngModel)]='namestenost'>
+        </td>
+    </tr>
+    <tr>
+        <td>izdavanje:</td>
+        <td>
+            <input type='text' name='izdavanje' [(ngModel)]='izdavanje'>
+        </td>
+    </tr>
+    <tr>
+        <td>galerija:</td>
+        <td>
+            <input type='text' name='galerija' [(ngModel)]='galerija'>
+        </td>
+    </tr>
+    <tr>
+        <td>cena:</td>
+        <td>
+            <input type='text' name='cena' [(ngModel)]='cena'>
+        </td>
+    </tr>
+    <tr>
+        <td>vlasnik:</td>
+        <td>
+            <input type='text' name='vlasnik' [(ngModel)]='vlasnik'>
+        </td>
+    </tr>
+    <tr>
+        <td>id:</td>
+        <td>
+            <input type='text' name='id' [(ngModel)]='id'>
+        </td>
+    </tr>
+    <tr>
+        <td>Promovisana:</td>
+        <td>
+   
+            <input type='radio' id= 'yes' name='promo' [(ngModel)]='promo' value='true' checked>
+            <label for="yes">Jeste</label>
+        </td>
+        <td>
+   
+            <input type='radio' id= 'no' name='promo' [(ngModel)]='promo' value='false'>
+            <label for="no">Nije</label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan='2'>
+            <button class='dugme1'(click)='ubaci()'>Dodaj novu nekretninu</button>
+        </td>
+    </tr>
+</table>
+{{poruka}}

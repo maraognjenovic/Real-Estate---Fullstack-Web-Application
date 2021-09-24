@@ -1,0 +1,613 @@
+<form class='centermeMeni'>
+    <ul class="menu cf">
+        <li><a (click)="navigiraj('registruj')">Registruj korisnika</a></li>
+        <li>
+            <a (click)="navigiraj('brisi')">Korisnici</a>
+
+            <ul class="submenu">
+                <li><a (click)="navigiraj('brisi')">Brisanje korisnika</a></li>
+                <li><a (click)="navigiraj('prihvatiReg')">Zahtevi za registraciju korisnika</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a (click)="navigiraj('sve')">Nekretnine</a>
+            <ul class="submenu">
+
+                <li><a (click)="navigiraj('sve')">Sve nekretnine</a></li>
+
+                <li> <a (click)="navigiraj('zahteviNek')">Zahtevi za nekretnine</a></li>
+            </ul>
+        </li>
+        <li><a (click)="navigiraj('novaNek')">Dodaj novu nekretninu</a></li>
+    </ul>
+</form>
+<span style="display: flex; justify-content: center;">
+    <button class='dugme1' (click)=odjaviSe()>Odjavi se</button>
+</span>
+<table>
+    <tr>
+        <td style="color: white;">Lozinka:</td>
+    </tr>
+    <tr>
+        <td>
+            <input type='password' name='staralozinka' [(ngModel)]='staralozinka' placeholder="Stara lozinka">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type='password' name='novalozinka' [(ngModel)]='novalozinka' placeholder="Nova lozinka">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type='password' name='novalozinka2' [(ngModel)]='novalozinka2' placeholder="Ponovi novu lozinku">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class='dugme1' (click)='izmeniLozinku(ja)'>Izmeni lozinku</button>
+        </td>
+    </tr>
+</table>
+
+<br />
+<br />
+<h4 class='traziNaslov' style="color:gray"><br />Grafici<br /></h4>
+<form class='trazi'>
+    <br />
+    <br />
+    <form class='mojaforma'>
+        <div id='grafik1' class='grafik1'>
+            <canvas id="myChart"></canvas>
+            <br />
+            <br />
+        </div>
+        <div id='grafik2' class='grafik2'>
+            <canvas id="cenovniRang"></canvas>
+            <br />
+            <br />
+        </div>
+        <div id='grafik3' class='grafik3'>
+            <canvas id="stanovi"></canvas>
+            <br />
+            <br />
+            <br />
+        </div>
+
+
+
+
+        <h1>Rad sa korisnicima: </h1>
+        <br />
+        <h2 id='brisi'>Korisnici</h2>
+        <br />
+        <br />
+        <table>
+            <tr>
+                <th>Korisnicko ime</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Mejl</th>
+                <th>Tip</th>
+                <th>Slika</th>
+            </tr>
+            <tr *ngFor='let n of korisnici'>
+                <td>{{n.korime}}</td>
+                <td>{{n.ime}}</td>
+                <td>{{n.prezime}}</td>
+                <td>{{n.mejl}}</td>
+                <td>{{n.tip}}</td>
+
+                <td>
+                    <div *ngIf='n.slika!=""; else elseBlock'>
+                        <img width='100px' height='100px' src='assets/slike/{{n.slika}}'>
+                    </div>
+                    <ng-template #elseBlock>
+                        <img width='100px' height='100px' src="assets/slike/korisnik.jpg" alt="">
+                    </ng-template>
+                </td>
+                <td>
+                    <button class='dugme1' (click)=obrisiKorisnika(n) *ngIf='n.korime!=korisnik.korime'>Obrisi</button>
+                </td>
+                <td>
+                    <button class='dugme1' (click)=azurirajKorisnika(n)>Azuriraj</button>
+                </td>
+
+
+
+            </tr>
+        </table>
+
+        <h3 id='azuriranjeKorisnika'></h3>
+        <table *ngIf='azuriranje==true'>
+            <tr>
+
+                <td>Korisnicko Ime:</td>
+                <td>
+                    <input type='text' name='novoKorIme' [(ngModel)]='novoKorIme' placeholder="{{togAzuriraj.korime}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniKorIme(togAzuriraj)'>Izmeni korisnicko ime</button>
+                </td>
+            </tr>
+            <tr>
+
+                <td>Ime:</td>
+                <td>
+                    <input type='text' name='novoime' [(ngModel)]='novoime' placeholder="{{togAzuriraj.ime}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniIme(togAzuriraj)'>Izmeni ime</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                    <input type='password' name='staralozinka' [(ngModel)]='staralozinka' placeholder="Stara lozinka">
+                </td>
+                <td>
+                    <input type='password' name='novalozinka' [(ngModel)]='novalozinka' placeholder="Nova lozinka">
+                </td>
+                <td>
+                    <input type='password' name='novalozinka2' [(ngModel)]='novalozinka2' placeholder="Nova lozinka">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniLozinku(togAzuriraj)'>Izmeni lozinku</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td>
+                    <input type='text' name='novoprezime' [(ngModel)]='novoprezime'
+                        placeholder="{{togAzuriraj.prezime}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniPrezime(togAzuriraj)'>Izmeni prezime</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Mejl:</td>
+                <td>
+                    <input type='text' name='novimejl' [(ngModel)]='novimejl' placeholder="{{togAzuriraj.mejl}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniMejl(togAzuriraj)'>Izmeni mejl</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Grad:</td>
+                <td>
+                    <input type='text' name='novigrad' [(ngModel)]='novigrad' placeholder="{{togAzuriraj.grad}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniGrad(togAzuriraj)'>Izmeni grad</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Drzava:</td>
+                <td>
+                    <input type='text' name='novadrzava' [(ngModel)]='novadrzava' placeholder="{{togAzuriraj.drzava}}">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniDrzavu(togAzuriraj)'>Izmeni drzavu</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Slika:</td>
+                <td>
+                    <input type="file" (change)="promeniProfilnu($event,togAzuriraj)">
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniSliku(togAzuriraj)'>Izmeni sliku</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Tip:</td>
+                <td>
+                    <select name='novitip' [(ngModel)]='novitip'>
+                        <option value='agent'>Agent</option>
+                        <option value='registrovanKorisnik' default>Korisnik</option>
+                    </select>
+                </td>
+                <td>
+                    <button class='dugme1' (click)='izmeniTip(togAzuriraj)'>Izmeni tip</button>
+                </td>
+            </tr>
+            <div> {{poruka}}</div>
+        </table>
+
+        <br />
+        <h2 id='prihvatiReg'>Zahtevi za registraciju</h2>
+        <br />
+        <br />
+        <table>
+            <tr>
+                <th>Korisnicko ime</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Mejl</th>
+                <th>Tip</th>
+            </tr>
+            <tr *ngFor='let n of sviKorisnici'>
+                <td>{{n.korime}}</td>
+                <td>{{n.ime}}</td>
+                <td>{{n.prezime}}</td>
+                <td>{{n.mejl}}</td>
+                <td>{{n.tip}}</td>
+                <td>
+                    <button class='dugme1' (click)=prihvati(n)>Prihvati</button>
+                    <button class='dugme1' (click)=obrisi(n)>Odbij</button>
+                </td>
+
+            </tr>
+        </table>
+        <br />
+        <br />
+    </form>
+    <br />
+    <br />
+    <form class="galerijaPromo">
+        <br />
+
+        <h2 class='naslov' id='registruj'>Registruj korisnika</h2>
+        <br />
+        <table>
+            <tr>
+                <td>Korisnicko ime:</td>
+                <td>
+                    <input type='text' name='korime' [(ngModel)]='korime'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                    <input type='password' name='lozinka' [(ngModel)]='lozinka'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Ponovi lozinku:</td>
+                <td>
+                    <input type='password' name='lozinka2' [(ngModel)]='lozinka2'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Ime:</td>
+                <td>
+                    <input type='text' name='ime' [(ngModel)]='ime'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td>
+                    <input type='text' name='prezime' [(ngModel)]='prezime'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Mejl:</td>
+                <td>
+                    <input type='text' name='mejl' [(ngModel)]='mejl'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Grad:</td>
+                <td>
+                    <input type='text' name='grad' [(ngModel)]='grad'>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Drzava:</td>
+                <td>
+                    <input type='text' name='drzava' [(ngModel)]='drzava'>
+                    <br />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>Tip:</td>
+                <td>
+                    <select name='tip' [(ngModel)]='tip'>
+                        <!-- <option value='admin'>Admin</option> -->
+                        <option value='agent'>Agent</option>
+                        <option value='registrovanKorisnik'>Korisnik</option>
+                    </select>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Slika:</td>
+                <td>
+                    <input type="file" (change)="upload($event)">
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <br />
+                    <button class='dugme1' (click)='registrujSe()'>Registruj korisnika</button>
+                    <br />
+                    <br />
+                </td>
+            </tr>
+        </table>
+        <br />
+
+    </form>
+    <br />
+    <br />
+
+    <form class='mojaforma'>
+        <h1 class="traziNaslov">Rad sa nekretninama:</h1>
+        <form class="trazi">
+            <br />
+            <h2 id="sve">Nekretnine</h2>
+            <br />
+            <br />
+
+            <div *ngFor='let n of sveNekretnine'>
+
+                <div class="card" style="width: 18rem;">
+                    <div *ngIf='n.galerija!=""; else elseBlock'>
+                        <img class="card-img-top" width='350px' height='350px' src="assets/{{n.galerija[idSlike]}}"
+                            alt="">
+                    </div>
+                    <ng-template #elseBlock>
+                        <img class="card-img-top" width='350px' height='350px' src="assets/kuca.jpg" alt="">
+                    </ng-template>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{n.opis}}</h5>
+                        <p class="card-text">
+
+                            Adresa: {{n.adresa}}<br />
+
+                            {{n.izdavanje}}<br />
+
+                            Tip: {{n.tip}}<br />
+
+                            Cena: {{n.cena}} eura<br />
+
+                            Sprat: {{n.sprat}}<br />
+
+                            Kvadratura: {{n.kvadratura}}<br />
+
+                            Broj soba: {{n.sobe}}<br />
+
+                            Namestenost: {{n.namestenost}}<br />
+
+                            Vlasnik: {{n.vlasnik}}
+
+                        </p>
+                        <br />
+                                <div class='center2' *ngIf='n.vlasnik!=korisnik.korime'>
+                    <div class='center2' *ngIf='n.vlasnik!=korisnik.korime'>
+            <a [routerLink]="['../nekretnina', n.id]" style="color: lightcoral;">Pogledaj nekretninu</a>
+        </div>
+        </div>
+
+                        <br />
+                        <br />
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+
+
+
+            <br />
+        </form>
+    </form>
+    <form class='galerijaPromo'>
+        <h2 class='naslov' id='novaNek'>Dodaj novu nekretninu</h2>
+        <br /><br />
+        <table>
+            <tr>
+                <td>opis:</td>
+                <td>
+                    <input type='text' name='opis' [(ngModel)]='opis'>
+                </td>
+            </tr>
+            <tr>
+                <td>adresa:</td>
+                <td>
+
+                    <input type='text' name='adresa' [(ngModel)]='adresa'>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td>tip:</td>
+                <td>
+                    <input type='text' name='tip' [(ngModel)]='tip'>
+                </td>
+            </tr>
+            <tr>
+                <td>sprat:</td>
+                <td>
+                    <input type='text' name='sprat' [(ngModel)]='sprat'>
+                </td>
+            </tr>
+            <tr>
+                <td>kvadratura:</td>
+                <td>
+                    <input type='text' name='kvadratura' [(ngModel)]='kvadratura'>
+                </td>
+            </tr>
+            <tr>
+                <td>sobe:</td>
+                <td>
+                    <input type='text' name='sobe' [(ngModel)]='sobe'>
+                </td>
+            </tr>
+            <tr>
+                <td>namestenost:</td>
+                <td>
+                    <input type='text' name='namestenost' [(ngModel)]='namestenost'>
+                </td>
+            </tr>
+            <tr>
+                <td>izdavanje:</td>
+                <td>
+                    <!-- <input type='text' name='izdavanje' [(ngModel)]='izdavanje'> -->
+                    <select name='izdavanje' [(ngModel)]='izdavanje' >
+                        <option  value="izdajeSe"> Izdaje se</option>
+                        <option  value="prodajeSe"> Prodaje se</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>cena:</td>
+                <td>
+                    <input type='text' name='cena' [(ngModel)]='cena'>
+                </td>
+            </tr>
+            <tr>
+                <!-- <select name='vlasnik' [(ngModel)]='vlasnik' >
+                    <ng-container *ngFor='let k of korisnici'></ng-container>
+                    <option  [value]="k.korime" *ngFor='let k of korisnici' > 
+                    <div *ngIf='k.tip!="agent"'>    
+                        {{k.ime}} {{k.prezime}} 
+                    </div>
+                    </option>
+                </select> 
+            
+            
+                                <div *ngIf='n.slika!=""; else elseBlock'>
+                        <img width='100px' height='100px' src='assets/slike/{{n.slika}}'>
+                    </div>
+                    <ng-template #elseBlock>
+                        <img width='100px' height='100px' src="assets/slike/korisnik.jpg" alt="">
+                    </ng-template>-->
+                <td>vlasnik:</td>
+                <td>
+                    <!-- <input type='text' name='vlasnik' [(ngModel)]='vlasnik'> -->
+                    <select name='vlasnik' [(ngModel)]='vlasnik' >
+                        <ng-container *ngFor='let k of korisnici'>
+                        <option  value="k.korime" *ngIf='k.tip!="agent"; else elseTip' > 
+                       
+                            {{k.ime}} {{k.prezime}} 
+                        
+                        </option>
+                        <ng-template #elseTip>
+                            <option  value="agencija"  > 
+                       
+                                {{k.ime}} {{k.prezime}} 
+                            
+                            </option>
+                        </ng-template>
+                    </ng-container>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>id:</td>
+                <td>
+                    <input type='text' name='id' [(ngModel)]='id'>
+                </td>
+            </tr>
+            <tr>
+                <td>Promovisana:</td>
+                <td>
+
+                    <input type='radio' id='yes' name='promo' [(ngModel)]='promo' value='true' checked>
+                    <label for="yes">Jeste</label>
+                </td>
+                <td>
+
+                    <input type='radio' id='no' name='promo' [(ngModel)]='promo' value='false'>
+                    <label for="no">Nije</label>
+                </td>
+            </tr>
+            <tr>
+                <td>galerija:</td>
+                <td>
+                    <input type="file" multiple="multiple" (change)="izmeni($event)">
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <br />
+                    <button class='dugme1' (click)='ubaciDirekt()'>Dodaj novu nekretninu</button>
+                    <br />
+                </td>
+            </tr>
+            <br />
+            <br />
+        </table>
+        <br />
+        <br />
+    </form>
+    <br /><br />
+    <form class='mojaforma'>
+        <h2 class='traziNaslov' id='zahteviNek' *ngIf="sveNoveNekretnine?.length > 0"><br />Zahtevi za nekretnine</h2>
+        <form class='trazi'>
+            <br />
+
+            <br />
+
+            <table *ngIf="sveNoveNekretnine?.length> 0">
+                <tr>
+                    <th>opis</th>
+                    <th>cena</th>
+                    <th>vlasnik</th>
+                    <th>Tip</th>
+                </tr>
+                <tr *ngFor='let n of sveNoveNekretnine'>
+                    <td>{{n.opis}}</td>
+                    <td>{{n.cena}}</td>
+                    <td>{{n.vlasnik}}</td>
+                    <td>{{n.tip}}</td>
+                    <td>
+                        <button class='dugme1' (click)=prihvatiNovuNekretninu(n)>Prihvati</button>
+                        <button class='dugme1' (click)=obrisiZahtevZaNekretninu(n)>Odbij</button>
+                    </td>
+
+                </tr>
+            </table>
+            <br /><br />
+            <h2 id='kupci' *ngIf='sveNoveKupljeneNekretnine.length> 0'>Realizovane kupovine</h2>
+            <table *ngIf='sveNoveKupljeneNekretnine.length> 0'>
+                <tr>
+                    <th>opis</th>
+                    <th>cena</th>
+                    <th>kupac</th>
+                    <th>vlasnik</th>
+                    <th>Tip</th>
+
+                </tr>
+                <tr *ngFor='let n of sveNoveKupljeneNekretnine'>
+                    <td>{{n.opis}}</td>
+                    <td>{{n.cena}}</td>
+                    <td>{{n.kupac}}</td>
+                    <td>{{n.vlasnik}}</td>
+                    <td>{{n.tip}}</td>
+                    <td>
+
+                    </td>
+
+                </tr>
+            </table>
+            <div *ngIf='poruka' class='greska'>
+                {{poruka}}
+            </div>
+            <br>
+
+            <br>
+
+        </form>
+    </form>

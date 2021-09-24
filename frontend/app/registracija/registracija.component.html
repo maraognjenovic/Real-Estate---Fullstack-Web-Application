@@ -1,0 +1,187 @@
+<form class='centermeMeni'>
+<ul class="menu cf">
+    <li><a href=""(click)="navigiraj('prijavnica')">Uloguj se</a></li>
+    <li>
+        <a href=""(click)="navigiraj('promo')">Promo nekretnine</a>
+    </li>
+    <li>
+        <a href=""(click)="navigiraj('trazi')">Trazi nekretnine</a>
+    </li>
+
+</ul>
+</form>
+<span class="poruka">
+ 
+    {{poruka}}
+</span>
+<form class="prijavnica">
+
+
+<table >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+ 
+    <tr>    
+        <br>
+        <br>
+        <br>
+        <td>Korisnicko ime:</td>
+        <td>
+            <input type='text' name='korime' [(ngModel)]='korime' required>
+        </td>
+
+    </tr>
+    <tr>    
+        <br>
+        <br>
+        <br>
+        <td>Lozinka:</td>
+        <td>
+
+            <input type='password' name='lozinka' [(ngModel)]='lozinka' required>
+
+
+        </td>
+
+    </tr>
+    <tr>   
+        <br>
+        <br>
+        <br>
+        <td>Ponovi lozinku:</td>
+        <td>
+
+            <input type='password' name='lozinka2' [(ngModel)]='lozinka2' required>
+
+
+        </td>
+    </tr>
+    <tr>    
+        <br>
+        <br>
+        <br>
+        <td>Ime:</td>
+        <td>
+            <input type='text' name='ime' [(ngModel)]='ime'>
+        </td>
+    </tr>
+    <tr>    
+        <br>
+        <br>
+        <br>
+        <td>Prezime:</td>
+        <td>
+            <input type='text' name='prezime' [(ngModel)]='prezime'>
+        </td>
+    </tr>
+    <tr>    
+        <br>
+        <br>
+        <br>
+        <td>Mejl:</td>
+        <td>
+            <input type='text' name='mejl' [(ngModel)]='mejl' required>
+        </td>
+    </tr>
+    <tr>   
+        <br>
+        <br>
+        <br>
+        <td>Grad:</td>
+        <td>
+            <input type='text' name='grad' [(ngModel)]='grad'>
+        </td>
+    </tr>
+    <tr>   
+        <br>
+        <br>
+        <br>
+        <td>Drzava:</td>
+        <td>
+            <input type='text' name='drzava' [(ngModel)]='drzava'>
+        </td>
+    </tr>
+    <!-- <tr>
+        <td>Slika:</td>
+        <td>
+            <!-- <div id="userphoto">
+                <div class="gravatar-wrapper-128"><img id="image" src="assets/11.jpg" alt="" class="logo" width="120" height="120"></div> 
+                <div class="change-picture-slide" style="top: 30px;">
+                    <input accept="image/*" type="file" id="upload" name="upload" (change)="readURL(this);"style="visibility: hidden;"  [(ngModel)]='slika'/>
+                    <a  (click)="changePicture(); ">Change Picture</a>
+                </div>
+            </div> -->
+            <!-- <input type='text' name='slika' [(ngModel)]='slika'>
+        </td>
+    </tr> --> 
+    <!-- <tr>
+        <td>
+            <div>
+                <input type="file" ng2FileSelect [uploader]="uploader" [(ngModel)]='slika'>
+                <input type='text' [(ngModel)]='ime_fajla_upload'>
+                <div class="row" *ngFor='let item of uploader.queue'>
+                    <div class='col-sm-6'>
+
+                        <p>{{item.file.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="potvrda_slanje_fajla">
+                <button class='btn btn-success' (click)="uploadFajlove(item)">Pošalji fajl</button>
+            
+            </div>
+        </td>
+    </tr> -->
+    <tr>    
+        
+        <td>Tip:</td>
+        <td>
+            <select name='tip' [(ngModel)]='tip' required>
+                <option value='agent'>Agent</option>
+                <option value='registrovanKorisnik'>Korisnik</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <br>
+        <br>
+        <br>
+        <td>Slika:</td>
+        <td>
+            <input type="file" (change)="change($event)">
+        </td>
+    </tr>
+    <tr>
+        <br>
+        <br>   
+        <br>
+        <br>
+        <br>
+        <td colspan='2'>
+            <button class='dugme1' (click)='registrujSe()'>Registruj se</button>
+        </td>
+    </tr>
+    <br>
+    <br>
+    <br>
+  
+    <br>
+    <br>
+    <br>
+    <br>    <br>
+    <br>
+    <br>
+    <br>
+    <br>    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</table>
+
+</form>
+

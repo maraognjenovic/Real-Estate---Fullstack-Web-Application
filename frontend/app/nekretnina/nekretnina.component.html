@@ -1,0 +1,71 @@
+<form class='centermeMeni'>
+<ul class="menu cf">
+    <li><a href=''>Vrati se na pocetnu stranicu</a></li>
+</ul>
+</form>
+<form class='galerijaPromo'>
+    <br/>
+    <br/>
+<span *ngFor="let s of mojaNekretnina.galerija">
+    <img width='230px' height='250px' src="assets/{{s}}">
+</span>
+
+
+<table>
+    <tr>
+        <th>opis</th>
+        <th>adresa</th>
+        <th>tip</th>
+        <th>sprat</th>
+        <th>kvadratura</th>
+        <th>sobe</th>
+        <th>namestenost</th>
+        <th>izdavanje</th>
+        <th>galerija</th>
+        <th>cena</th>
+        <th>vlasnik</th>
+        <th>id</th>
+    </tr>
+    <tr >
+        <td>{{mojaNekretnina.opis}}</td>
+        <td>{{mojaNekretnina.adresa}}</td>
+        <td>{{mojaNekretnina.tip}}</td>
+        <td>{{mojaNekretnina.sprat}}</td>
+        <td>{{mojaNekretnina.kvadratura}}</td>
+        <td>{{mojaNekretnina.sobe}}</td>
+        <td>{{mojaNekretnina.namestenost}}</td>
+        <td>{{mojaNekretnina.izdavanje}}</td>
+        <td>{{mojaNekretnina.cena}}</td>
+        <td>{{mojaNekretnina.vlasnik}}</td>
+        <td>{{mojaNekretnina.id}}</td>
+        <td> 
+            <!-- <button class='dugme1'(click)=obrisi(mojaNekretnina.id)>Obrisi</button> -->
+        </td>
+    
+    </tr>
+    <tr *ngIf='mojaNekretnina.izdavanje=="prodajeSe"'>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <td>Izaberi nacin placanja:</td>
+        <td>
+   
+            <input type='radio' id= 'kes' name='plati' [(ngModel)]='plati' value='kes' checked>
+            <label for="kes">Plati u kesu</label>
+        </td>
+        <td>
+   
+            <input type='radio' id= 'kredit' name='plati' [(ngModel)]='plati' value='kredit'>
+            <label for="kredit">Digni kredit</label>
+        </td>
+    </tr>
+    <tr *ngIf='mojaNekretnina.izdavanje=="prodajeSe"'>
+        <button class='dugme1'(click)= kupi()>Kupi nekretninu</button>
+    </tr>
+</table>
+<br/>
+<br/>
+<br/>
+</form>
+{{poruka}}

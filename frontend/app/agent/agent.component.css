@@ -1,0 +1,241 @@
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+
+.menu,
+.submenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.menu {			
+  width: 100%;
+  width: fit-content;	
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.menu > li {
+  background: #223446;
+  float: left;
+  position: relative;
+  transform: skewX(25deg);
+}
+
+.menu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 16px;
+}		
+
+.menu li:hover {
+  background: lightcoral;
+}		
+
+.menu > li > a {
+  transform: skewX(-25deg);
+  padding: 1em 2em;
+}
+
+.submenu {
+  position: absolute;
+  width: 300px;
+  transform: skewX(-25deg);
+  transform-origin: left top;
+}
+
+.submenu li {
+  background-color: #223446;
+  position: relative;
+  overflow: hidden;		
+}						
+
+.submenu > li > a {
+  padding: 1em 2em;			
+}
+
+.submenu > li::after {
+  content: '';
+  position: absolute;
+  top:0;
+  height: 100%;
+  width: 100%;			
+  box-shadow: 0 0 50px rgba(0, 0, 0, .9);			
+}		
+
+.submenu,
+.submenu li {
+  opacity: 0;
+  visibility: hidden;			
+}
+
+.submenu li {
+  transition: .2s ease transform;
+}
+
+.menu > li:hover .submenu,
+.menu > li:hover .submenu li {
+  opacity: 1;
+  visibility: visible;
+}		
+
+.grafik1{
+  display:flex;
+  width: 420px;
+  height: 420px;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+  padding: 0%;
+   justify-content: center; 
+justify-self: center;
+justify-items: center;
+align-content: center;
+    text-align: center;
+  
+}
+.grafik2{
+  display:flex;
+  width: 500px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+  padding: 0%;
+   justify-content: center; 
+justify-self: center;
+justify-items: center;
+align-content: center;
+    text-align: center;
+  
+}
+.grafik3{
+  display:flex;
+  width: 470px;
+  height: 470px;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+  padding: 0%;
+   justify-content: center; 
+justify-self: center;
+justify-items: center;
+align-content: center;
+    text-align: center;
+}
+.prijavnica{
+
+  display:grid;
+margin: 0%;
+padding: 0%;
+ justify-content: center; 
+justify-self: center;
+justify-items: center;
+align-content: center;
+  text-align: center;
+
+}
+
+.trazi{
+margin: 0px;
+align-items: center;
+text-align: center;
+
+  
+  background-color:#ffbcc7e1;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+  .chart{
+    display:block;
+    width: 400px;
+    height: 400px;
+    
+  }
+
+  .mojaforma{
+    display:grid;
+    justify-content: center; 
+    align-items: center;
+  
+  }
+  .dugme1{
+    border-radius: 8px;
+    background-color: lightcoral;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 60%;
+    color: white;
+    cursor: pointer;
+    width: auto;
+  }
+  .dugme1:active {
+    transform: translateY(4px);
+  }
+  .dugme1:hover {
+    background-color: #223446; 
+    color: white;
+  }
+  .naslov{
+    display:flex;
+    margin: 0%;
+    padding: 0%;
+    justify-content: center; 
+    color:rgb(255, 255, 255);
+  }
+  .galerijaPromo{
+
+    border-radius: 60px;
+    background-color:#223446d5 ;
+    color:rgb(255, 255, 255);
+  }
+  
+  .center2 {
+    display:flex;
+    margin: 0%;
+    padding: 0%;
+    justify-content: center; 
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+  }
+  .trazi{
+  
+    margin: 0px;
+    align-items: center;
+    text-align: center;
+    /* border-radius: 60px; */
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    background-color:#ffbcc7e1;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }
+  .traziNaslov{
+    margin: 0px;
+    align-items: center;
+    text-align: center;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color:#ffbcc7e1;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }
+  .centermeMeni{
+    display:flex;
+    margin: 0%;
+    padding: 0%;
+    justify-content: center; 
+  }
